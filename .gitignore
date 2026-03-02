@@ -1,0 +1,16 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# ML
+mlruns/
+mlflow.db
+*.pkl
+
+# Dataset
+*.csv
+
+# VS Code
+.vscode/
