@@ -6,6 +6,7 @@ services:
     container_name: backend-ml
     ports:
       - "8000:8000"
+    restart: unless-stopped
 
   frontend-ml:
     build: ./frontend
@@ -16,3 +17,4 @@ services:
       - REACT_APP_BACKEND_URL=http://backend-ml:8000
     depends_on:
       - backend-ml
+    restart: unless-stopped

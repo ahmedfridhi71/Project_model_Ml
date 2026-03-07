@@ -10,7 +10,7 @@ WORKDIR /app
 COPY . .
 
 # Installer les dépendances Python
-RUN pip install --no-cache-dir fastapi uvicorn numpy scikit-learn pydantic joblib
+RUN pip install --no-cache-dir fastapi uvicorn numpy scikit-learn pydantic joblib passlib[bcrypt] python-jose
 
 # Exposer le port sur lequel FastAPI va écouter
 EXPOSE 8000
