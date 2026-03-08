@@ -8,6 +8,9 @@ from jose import jwt, JWTError
 import joblib
 import numpy as np
 
+# =======================
+# FastAPI app
+# =======================
 app = FastAPI(title="Disease Prediction API 🚀")
 
 # =======================
@@ -37,9 +40,10 @@ users_db = {}
 # Créer un utilisateur test pour login immédiat
 test_email = "test@example.com"
 test_password = "password123"
+# Tronquer password à 72 caractères pour Bcrypt
 users_db[test_email] = {
     "email": test_email,
-    "hashed_password": pwd_context.hash(test_password)
+    "hashed_password": pwd_context.hash(test_password[:72])
 }
 print(f"Test user created: {test_email} / {test_password}")
 
@@ -68,7 +72,7 @@ class Token(BaseModel):
 # Utilitaires
 # =======================
 def verify_password(plain, hashed):
-    return pwd_context.verify(plain, hashed)
+    return pwd_context.verify(plain[:72], hashed)
 
 def get_user(email):
     return users_db.get(email)

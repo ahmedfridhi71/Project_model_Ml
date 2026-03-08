@@ -1,19 +1,25 @@
-# backend/Dockerfile
-
-# Image officielle Python slim
+# Dockerfile
 FROM python:3.11-slim
 
-# Définir le dossier de travail dans le container
 WORKDIR /app
 
-# Copier tous les fichiers du backend dans le container
+# Copier tout le code backend
 COPY . .
 
-# Installer les dépendances Python
-RUN pip install --no-cache-dir fastapi uvicorn numpy scikit-learn pydantic joblib passlib[bcrypt] python-jose
+# Installer les dépendances
+RUN pip install --no-cache-dir \
+    fastapi \
+    uvicorn \
+    numpy \
+    scikit-learn \
+    pydantic \
+    joblib \
+    "passlib[bcrypt]==1.7.4" \
+    "bcrypt==4.0.1" \
+    python-jose \
+    python-multipart
 
-# Exposer le port sur lequel FastAPI va écouter
 EXPOSE 8000
 
-# Lancer l'application avec Uvicorn
+# Lancer l'application FastAPI
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

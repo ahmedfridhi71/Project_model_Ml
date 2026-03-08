@@ -11,6 +11,10 @@ mlflow.db
 
 # Dataset
 *.csv
+venv/
+.venv/
+mlruns/
+__pycache__/
 
 # VS Code
 .vscode/
