@@ -1,19 +1,16 @@
 version: "3.9"
+
 services:
   backend-ml:
     build: ./backend
     container_name: backend-ml
     ports:
       - "8000:8000"
-    restart: unless-stopped
 
   frontend-ml:
     build: ./frontend
     container_name: frontend-ml
     ports:
-      - "3000:80"
+      - "3000:3000"
     environment:
-      - REACT_APP_BACKEND_URL=http://backend-ml:8000
-    depends_on:
-      - backend-ml
-    restart: unless-stopped
+      - REACT_APP_API_URL=http://backend-ml:8000
